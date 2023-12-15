@@ -1,0 +1,14 @@
+mockMvc.perform(post("/api/v1/candidate/send-link")
+            .with(setHeader("companyId", "1054"))
+            .with(setHeader("userId", "1054"))
+            .contentType(MediaType.APPLICATION_JSON))
+	.andDo(print())
+            .andExpect(status().isOk());
+	
+  
+	private RequestPostProcessor setHeader(String name, String value) {
+        return mockRequest -> {
+            mockRequest.addHeader(name, value);
+            return mockRequest;
+        };
+    }
